@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Practical AI prompt kits to help you create, work smarter, grow your business, and simplify everyday life.">
+<title>PromptLab — AI Toolkits for Real Life</title>
+<style>
+:root{
+ --bg:#080d18;--panel:#111a2b;--panel2:#0e1726;--ink:#f7f9ff;--muted:#a4b0c5;
+ --line:rgba(160,184,220,.16);--blue:#6ca9ff;--cyan:#73e0f6;--violet:#a68bff;
+ --accent:#7aaeff;--radius:22px;--max:1180px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 70% -10%,rgba(53,99,180,.23),transparent 42%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,13,24,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.04em;font-size:20px}
+.logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#7eb7ff,#6a6af6);display:grid;place-items:center;box-shadow:0 6px 24px #4e8dff45;font-size:16px}
+.logo span em{font-style:normal;color:var(--blue)}
+.navlinks{display:flex;gap:26px;color:#c3cee0;font-size:14px}
+.navlinks a:hover{color:white}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.cart{border:1px solid var(--line);background:#121c2d;color:white;border-radius:999px;padding:10px 14px;font-size:13px}
+.cart b{background:#77aaff;color:#07101d;padding:2px 7px;border-radius:20px;margin-left:5px}
+.menu-toggle{display:none;border:1px solid var(--line);background:#111a2b;color:white;border-radius:12px;padding:9px 12px}
+.hero{padding:80px 0 58px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(112,164,255,.25);background:#15233a;color:#a8c8ff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:#7ee0c2;box-shadow:0 0 12px #7ee0c2}
+h1{font-size:clamp(42px,5.6vw,72px);line-height:1.02;letter-spacing:-.065em;margin:22px 0}
+.gradient{background:linear-gradient(100deg,#b8d5ff,#7be3f4 52%,#b4a1ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;line-height:1.7;color:#b1bed2;max-width:550px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:14px;padding:14px 19px;font-weight:700;border:1px solid transparent;transition:.2s}
+.btn-primary{background:linear-gradient(135deg,#8abaff,#75dff2);color:#07111d;box-shadow:0 10px 28px #66b2ff26}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:white}
+.btn-secondary:hover{background:rgba(255,255,255,.08)}
+.trust{display:flex;gap:18px;flex-wrap:wrap;color:#94a5bf;font-size:12px}
+.trust span{display:flex;align-items:center;gap:6px}
+.hero-art{position:relative;min-height:430px;display:grid;place-items:center}
+.glow{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#427dff40,transparent 68%);filter:blur(20px)}
+.mock-stack{position:relative;width:min(420px,100%);height:380px}
+.mock-card{position:absolute;inset:30px 24px;background:linear-gradient(150deg,#17263e,#0c1424);border:1px solid #334965;border-radius:24px;box-shadow:0 25px 70px #0007;padding:25px;transform:rotate(-5deg)}
+.mock-card.back{inset:15px 44px;background:linear-gradient(150deg,#1b2140,#10172a);transform:rotate(7deg);opacity:.7}
+.mock-label{font-size:10px;letter-spacing:.17em;color:#8fbaff;font-weight:800}
+.mock-title{font-size:29px;font-weight:800;letter-spacing:-.05em;margin:16px 0 7px}
+.mock-sub{font-size:12px;color:#9eb0ca}
+.prompt-line{height:9px;border-radius:10px;background:#283a55;margin:18px 0}
+.prompt-line.short{width:68%}
+.prompt-box{background:#0b1423;border:1px solid #273c5c;border-radius:14px;padding:15px;margin-top:22px}
+.prompt-box label{color:#7edcf2;font-size:10px;font-weight:700;letter-spacing:.1em}
+.prompt-box p{font-size:12px;line-height:1.6;color:#c3d1e5;margin:10px 0 0}
+.floating-tag{position:absolute;right:4px;bottom:22px;border:1px solid #41699e;background:#13243b;border-radius:14px;padding:12px 15px;box-shadow:0 14px 36px #0006;font-size:13px}
+.floating-tag strong{color:#8eddf3}
+.section{padding:70px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.section-head h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.05em;margin:0 0 9px}
+.section-head p{margin:0;color:var(--muted);max-width:550px;line-height:1.6}
+.filters{display:flex;gap:9px;overflow:auto;padding:2px 0 14px;scrollbar-width:thin}
+.filter{white-space:nowrap;border:1px solid var(--line);background:#111a29;color:#aebbd0;border-radius:999px;padding:10px 15px;font-size:13px}
+.filter.active,.filter:hover{background:#1d3454;border-color:#5386d6;color:#dceaff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.product{border:1px solid var(--line);background:linear-gradient(180deg,#121d2f,#0c1422);border-radius:20px;padding:20px;display:flex;flex-direction:column;min-height:310px;transition:.2s}
+.product:hover{transform:translateY(-4px);border-color:#456b9f;box-shadow:0 18px 40px #0003}
+.product-top{display:flex;align-items:center;justify-content:space-between}
+.product-icon{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#203b63,#16263e);display:grid;place-items:center;font-size:21px;border:1px solid #355273}
+.badge{font-size:10px;color:#9fc6ff;background:#172b46;border:1px solid #294d76;padding:6px 9px;border-radius:99px;letter-spacing:.07em;text-transform:uppercase}
+.product h3{font-size:19px;letter-spacing:-.03em;margin:17px 0 8px}
+.product p{font-size:13px;color:#a8b7cc;line-height:1.6;margin:0 0 17px}
+.product-meta{display:flex;gap:9px;flex-wrap:wrap;color:#8598b5;font-size:11px;margin-bottom:16px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:15px;border-top:1px solid var(--line)}
+.price{font-size:22px;font-weight:800}
+.price small{font-size:11px;font-weight:500;color:#899ab2}
+.buy-mini{border:1px solid #4779bb;background:#162b46;color:#d8eaff;padding:10px 13px;border-radius:11px;font-size:12px;font-weight:700}
+.buy-mini:hover{background:#21446e}
+.bundle{border:1px solid #4566a8;border-radius:26px;background:radial-gradient(circle at 90% 20%,#344b9850,transparent 42%),linear-gradient(120deg,#141f36,#0c1423);padding:36px;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center;overflow:hidden}
+.bundle h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.05em;margin:14px 0}
+.bundle p{color:#b3c2d7;line-height:1.7;max-width:620px}
+.bundle-price{display:flex;align-items:baseline;gap:12px;margin:15px 0}
+.bundle-price strong{font-size:38px}
+.bundle-price del{color:#7788a4}
+.bundle-visual{display:grid;place-items:center;min-height:230px}
+.bundle-tiles{display:grid;grid-template-columns:repeat(2,120px);gap:12px;transform:rotate(-7deg)}
+.tile{aspect-ratio:1;border:1px solid #43628e;border-radius:18px;background:linear-gradient(140deg,#1c3150,#101a2c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 18px 32px #0004}
+.tile span{font-size:28px}.tile small{font-size:10px;color:#aac6e9;text-align:center}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.step{padding:22px;border:1px solid var(--line);border-radius:18px;background:#101929}
+.step-number{color:#7fb7ff;font-size:12px;font-weight:800;letter-spacing:.1em}
+.step h3{margin:12px 0 8px;font-size:17px}
+.step p{color:#a7b6cb;line-height:1.65;font-size:13px;margin:0}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.quote{border:1px solid var(--line);background:#101929;border-radius:18px;padding:22px;color:#bdc9dc;line-height:1.7;font-size:13px}
+.quote .stars{color:#83baff;letter-spacing:.15em;margin-bottom:10px}
+.quote small{display:block;color:#8092ad;margin-top:13px}
+.faq{max-width:800px;margin:auto}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-weight:700;cursor:pointer}
+details p{color:#a9b8ce;line-height:1.7;font-size:14px}
+.newsletter{border:1px solid var(--line);background:linear-gradient(120deg,#13213a,#0e1727);border-radius:22px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.newsletter h2{margin:0 0 7px;letter-spacing:-.04em}
+.newsletter p{color:#a8b7cc;margin:0}
+.news-form{display:flex;gap:8px;width:min(410px,100%)}
+.news-form input{flex:1;min-width:0;background:#091220;border:1px solid #334763;border-radius:12px;padding:13px;color:white}
+footer{padding:38px 0 25px;border-top:1px solid var(--line);color:#8293ad;font-size:12px}
+.footer-row{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:50;background:#0009;backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.show{display:flex}
+.modal{max-width:460px;width:100%;border:1px solid #405a7d;background:#111b2c;border-radius:24px;padding:26px;box-shadow:0 30px 80px #0008}
+.modal h3{margin-top:0;font-size:23px}
+.modal p{color:#aab9cf;line-height:1.65}
+.modal-close{float:right;border:0;background:transparent;color:#aab9cf;font-size:23px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#d9ecff;color:#081320;padding:12px 17px;border-radius:13px;font-weight:700;font-size:13px;transition:.25s;z-index:60}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:25px}.hero-art{min-height:350px}.grid{grid-template-columns:repeat(2,1fr)}.bundle{grid-template-columns:1fr}.bundle-visual{min-height:180px}.steps,.testimonial-grid{grid-template-columns:1fr}.section{padding:55px 0}}
+@media(max-width:640px){
+ .container{width:min(var(--max),calc(100% - 28px))}
+ .nav{height:65px}.navlinks{display:none;position:absolute;top:65px;left:0;right:0;background:#0b1423;padding:18px 22px 22px;flex-direction:column;border-bottom:1px solid var(--line)}
+ .navlinks.open{display:flex}.menu-toggle{display:block}.cart{padding:9px 11px}
+ .hero{padding:50px 0 32px}h1{font-size:46px}.hero p{font-size:16px}.hero-art{min-height:315px}.mock-stack{height:300px}.mock-card{inset:20px 10px;padding:19px}.mock-card.back{inset:8px 25px}.mock-title{font-size:25px}.floating-tag{right:0;bottom:5px}
+ .section-head{display:block}.section-head .btn{margin-top:18px}.grid{grid-template-columns:1fr}.product{min-height:280px}
+ .bundle{padding:24px}.bundle-tiles{grid-template-columns:repeat(2,100px)}.tile{border-radius:15px}.bundle-price strong{font-size:32px}
+ .newsletter{display:block;padding:24px}.news-form{margin-top:18px}.footer-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="container nav">
+  <a class="logo" href="#top"><div class="logo-mark">✦</div><span>Prompt<em>Lab</em></span></a>
+  <nav class="navlinks" id="navlinks">
+   <a href="#shop">Shop</a><a href="#bundle">Bundles</a><a href="#how">How it works</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="nav-actions"><button class="cart" onclick="showCart()">Cart <b id="cartCount">0</b></button><button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button></div>
+ </div>
+</header>
+<main id="top">
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <div class="kicker"><span class="dot"></span> Practical AI. Real-life results.</div>
+   <h1>Make AI work<br><span class="gradient">for your life.</span></h1>
+   <p>Copy-ready prompt kits for smarter work, better content, business ideas, learning, and everyday life. No tech skills needed.</p>
+   <div class="cta-row"><a class="btn btn-primary" href="#shop">Explore toolkits <span>→</span></a><a class="btn btn-secondary" href="#how">How it works</a></div>
+   <div class="trust"><span>✦ Beginner friendly</span><span>↗ Instant access</span><span>▣ Copy &amp; paste</span></div>
+  </div>
+  <div class="hero-art" aria-label="Illustration of digital prompt toolkit">
+   <div class="glow"></div><div class="mock-stack">
+    <div class="mock-card back"></div>
+    <div class="mock-card">
+     <div class="mock-label">PROMPTLAB / DIGITAL TOOLKIT</div>
+     <div class="mock-title">THE ULTIMATE<br><span class="gradient">AI TOOLKIT</span></div>
+     <div class="mock-sub">100+ powerful ChatGPT prompts</div>
+     <div class="prompt-line"></div><div class="prompt-line short"></div>
+     <div class="prompt-box"><label>READY-TO-USE PROMPT</label><p>“Act as my strategic partner. Help me turn this goal into a clear, practical action plan…”</p></div>
+    </div>
+    <div class="floating-tag">✦ <strong>100 prompts</strong> · 10 categories</div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section" id="shop">
+ <div class="container">
+  <div class="section-head"><div><h2>Find your AI toolkit</h2><p>Practical prompt collections for the things you want to get done.</p></div></div>
+  <div class="filters" id="filters">
+   <button class="filter active" data-cat="all">All toolkits</button><button class="filter" data-cat="business">Business</button><button class="filter" data-cat="content">Content</button><button class="filter" data-cat="productivity">Productivity</button><button class="filter" data-cat="career">Career &amp; Learning</button><button class="filter" data-cat="life">Everyday Life</button>
+  </div>
+  <div class="grid" id="productGrid">
+   <article class="product" data-cat="all business productivity content career life">
+    <div class="product-top"><div class="product-icon">✦</div><span class="badge">Best value</span></div>
+    <h3>The Ultimate AI Toolkit</h3><p>100+ powerful prompts for business, content, productivity, career, learning, and everyday life.</p>
+    <div class="product-meta"><span>100 prompts</span><span>10 categories</span><span>PDF guide</span></div>
+    <div class="product-bottom"><div class="price">$19 <small>one-time</small></div><button class="buy-mini" onclick="addToCart('The Ultimate AI Toolkit',19)">Add to cart</button></div>
+   </article>
+   <article class="product" data-cat="business">
+    <div class="product-top"><div class="product-icon">🚀</div><span class="badge">Coming soon</span></div>
+    <h3>Small Business AI Kit</h3><p>Prompts for planning, customer research, offers, marketing, and daily business operations.</p>
+    <div class="product-meta"><span>Business</span><span>Strategy</span><span>Marketing</span></div>
+    <div class="product-bottom"><div class="price">$17 <small>planned</small></div><button class="buy-mini" onclick="notifyComing('Small Business AI Kit')">Notify me</button></div>
+   </article>
+   <article class="product" data-cat="content">
+    <div class="product-top"><div class="product-icon">🎬</div><span class="badge">Coming soon</span></div>
+    <h3>AI Content Creator Kit</h3><p>Hooks, Reels scripts, captions, calendars, repurposing, and faceless content ideas.</p>
+    <div class="product-meta"><span>Creator tools</span><span>Social media</span><span>Scripts</span></div>
+    <div class="product-bottom"><div class="price">$15 <small>planned</small></div><button class="buy-mini" onclick="notifyComing('AI Content Creator Kit')">Notify me</button></div>
+   </article>
+   <article class="product" data-cat="productivity">
+    <div class="product-top"><div class="product-icon">⚡</div><span class="badge">Coming soon</span></div>
+    <h3>Ultimate Productivity Kit</h3><p>Use AI to plan your week, focus, organize projects, and simplify repetitive work.</p>
+    <div class="product-meta"><span>Planning</span><span>Workflow</span><span>Focus</span></div>
+    <div class="product-bottom"><div class="price">$12 <small>planned</small></div><button class="buy-mini" onclick="notifyComing('Ultimate Productivity Kit')">Notify me</button></div>
+   </article>
+   <article class="product" data-cat="career">
+    <div class="product-top"><div class="product-icon">🎓</div><span class="badge">Coming soon</span></div>
+    <h3>Career &amp; Learning Kit</h3><p>Resume help, interview practice, skill plans, study sessions, and learning prompts.</p>
+    <div class="product-meta"><span>Career</span><span>Learning</span><span>Practice</span></div>
+    <div class="product-bottom"><div class="price">$12 <small>planned</small></div><button class="buy-mini" onclick="notifyComing('Career & Learning Kit')">Notify me</button></div>
+   </article>
+   <article class="product" data-cat="life">
+    <div class="product-top"><div class="product-icon">☀️</div><span class="badge">Coming soon</span></div>
+    <h3>Everyday AI Assistant Kit</h3><p>Meal planning, trips, home organization, gift ideas, budgets, and daily routines.</p>
+    <div class="product-meta"><span>Lifestyle</span><span>Organization</span><span>Planning</span></div>
+    <div class="product-bottom"><div class="price">$9 <small>planned</small></div><button class="buy-mini" onclick="notifyComing('Everyday AI Assistant Kit')">Notify me</button></div>
+   </article>
+  </div>
+ </div>
+</section>
+<section class="section" id="bundle">
+ <div class="container">
+  <div class="bundle">
+   <div><div class="kicker">✦ Complete collection</div><h2>Get the toolkit.<br>Unlock more possibilities.</h2><p>Start with the complete prompt library built to help you get more from ChatGPT across work, business, creativity, and everyday life.</p><div class="bundle-price"><strong>$19</strong><small>one-time purchase</small></div><a class="btn btn-primary" href="#shop" onclick="addToCart('The Ultimate AI Toolkit',19);return false;">Get instant access →</a></div>
+   <div class="bundle-visual"><div class="bundle-tiles"><div class="tile"><span>💡</span><small>BUSINESS</small></div><div class="tile"><span>✍️</span><small>CONTENT</small></div><div class="tile"><span>⚡</span><small>PRODUCTIVITY</small></div><div class="tile"><span>🌱</span><small>EVERYDAY</small></div></div></div>
+  </div>
+ </div>
+</section>
+<section class="section" id="how">
+ <div class="container"><div class="section-head"><div><h2>Simple by design</h2><p>From a question to a useful result in just a few steps.</p></div></div>
+ <div class="steps">
+  <div class="step"><div class="step-number">01 / CHOOSE</div><h3>Pick your goal</h3><p>Choose the toolkit or prompt that matches what you need to do right now.</p></div>
+  <div class="step"><div class="step-number">02 / COPY</div><h3>Paste into ChatGPT</h3><p>Copy a ready-to-use prompt, add your own context, and send it to ChatGPT.</p></div>
+  <div class="step"><div class="step-number">03 / CREATE</div><h3>Refine &amp; take action</h3><p>Ask follow-up questions, personalize the output, and turn it into your next step.</p></div>
+ </div></div>
+</section>
+<section class="section">
+ <div class="container"><div class="section-head"><div><h2>Built to be practical</h2><p>No complicated theory. Just clear prompts you can adapt to your own goals.</p></div></div>
+ <div class="testimonial-grid">
+  <div class="quote"><div class="stars">✦ ✦ ✦ ✦ ✦</div>“Clear prompts make it easier to get a useful starting point instead of staring at a blank chat.”<small>Designed for beginners</small></div>
+  <div class="quote"><div class="stars">✦ ✦ ✦ ✦ ✦</div>“A toolkit you can return to whenever you need an idea, plan, draft, or fresh perspective.”<small>Made for everyday use</small></div>
+  <div class="quote"><div class="stars">✦ ✦ ✦ ✦ ✦</div>“Copy, personalize, refine. A simple workflow that helps you move from asking to doing.”<small>Flexible prompt library</small></div>
+ </div></div>
+</section>
+<section class="section" id="faq">
+ <div class="container faq"><div class="section-head"><div><h2>Frequently asked questions</h2><p>Quick answers before you choose a toolkit.</p></div></div>
+  <details><summary>Do I need AI experience?</summary><p>No. The prompts are designed to be beginner-friendly. Replace the bracketed placeholders with your own information and paste into ChatGPT.</p></details>
+  <details><summary>What do I receive after purchase?</summary><p>Digital PDF prompt collections. There is no physical item shipped. The product page will specify exactly what is included.</p></details>
+  <details><summary>Can I use the prompts more than once?</summary><p>Yes. Use them repeatedly, adapt them to different projects, and refine them for your needs.</p></details>
+  <details><summary>Will AI always give accurate answers?</summary><p>No. AI can make mistakes or provide outdated information. Verify important information, especially for financial, legal, health, or professional decisions.</p></details>
+  <details><summary>Is checkout live?</summary><p>This website template currently has a demonstration cart. Connect a checkout provider (such as Payhip, Gumroad, or Stripe) before accepting real payments.</p></details>
+ </div>
+</section>
+<section class="section">
+ <div class="container"><div class="newsletter"><div><h2>Get smarter with AI.</h2><p>Join for new prompt ideas and toolkit updates.</p></div><form class="news-form" onsubmit="subscribe(event)"><input type="email" placeholder="Your email address" required><button class="btn btn-primary" type="submit">Join</button></form></div></div>
+</section>
+</main>
+<footer><div class="container footer-row"><div><a class="logo" href="#top"><div class="logo-mark">✦</div><span>Prompt<em style="color:#6ca9ff">Lab</em></span></a><p style="margin-top:13px">Practical AI toolkits for real life.</p><p>© 2026 PromptLab. Digital products. All rights reserved.</p></div><div class="footer-links"><a href="#shop">Shop</a><a href="#faq">FAQ</a><a href="#top">Back to top ↑</a></div></div></footer>
+<div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" onclick="closeModal()">×</button><h3 id="modalTitle">Your cart</h3><div id="modalBody"></div><button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="closeModal()">Continue browsing</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+let cart=[];
+const productLink="ultimate_ai_toolkit.pdf";
+function addToCart(name,price){cart.push({name,price});document.getElementById("cartCount").textContent=cart.length;toast(name+" added to cart");}
+function showCart(){let body=document.getElementById("modalBody");document.getElementById("modalTitle").textContent="Your cart";
+ if(!cart.length){body.innerHTML="<p>Your cart is empty. Browse the toolkits and add one to get started.</p>";}
+ else {let total=cart.reduce((s,x)=>s+x.price,0);body.innerHTML="<ul style='padding-left:20px;color:#c7d5e8'>"+cart.map(x=>`<li>${x.name} — $${x.price}</li>`).join("")+"</ul><p><strong>Total: $"+total+"</strong></p><p>Checkout isn't connected yet. This is a storefront demo; connect a payment provider to enable purchases.</p>";}
+ document.getElementById("modal").classList.add("show")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function notifyComing(name){toast(name+" — coming soon")}
+function toast(text){let t=document.getElementById("toast");t.textContent=text;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2300)}
+function toggleMenu(){document.getElementById("navlinks").classList.toggle("open")}
+document.querySelectorAll(".filter").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));btn.classList.add("active");let cat=btn.dataset.cat;document.querySelectorAll(".product").forEach(card=>{let cats=card.dataset.cat.split(" ");card.style.display=(cat==="all"||cats.includes(cat))?"flex":"none"})}));
+function subscribe(e){e.preventDefault();toast("Thanks! Email signup demo only—connect a form service to collect emails.");e.target.reset()}
+</script>
+</body>
+</html>
